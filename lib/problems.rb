@@ -5,7 +5,33 @@
 # Example:
 #
 # all_vowel_pairs(["goat", "action", "tear", "impromptu", "tired", "europe"])   # => ["action europe", "tear impromptu"]
+
+def pairer(arr)
+    str = arr.join("").gsub(/[^aeiou]/,"").split("").sort
+
+    if str == ["a","e","i","o","u"]
+        return true
+    end
+    
+    false
+end
+
+
+
 def all_vowel_pairs(words)
+
+   arr = []
+   (0...words.length - 1).each do |idx|
+      (0...words.length).each do |idx2|
+           if pairer([words[idx],words[idx2]]) == true 
+               arr << [words[idx],words[idx2]]
+            end
+        end
+   end
+
+   arr
+
+    
 
 end
 
@@ -18,6 +44,10 @@ end
 # composite?(9)     # => true
 # composite?(13)    # => false
 def composite?(num)
+
+    (2..num-1).each { |x| return true if num % x == 0 }
+
+    return false
 
 end
 
